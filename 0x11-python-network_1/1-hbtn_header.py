@@ -1,11 +1,11 @@
 #!/usr/bin/python3
-"""A script that takes in a URL, sends a request and display the value
-in the X-Request-Id variable found in the header"""
-
-if __name__ == '__main__':
-    import sys
-    import urllib.request
-    url = sys.argv[1]
-    with urllib.request.urlopen(url) as response:
-        url_res = response.info()
-        print(url_res['X-Request-Id'])
+"""
+takes in a URL, sends a request to the URL and displays the value of the
+X-Request-Id variable found in the header of the response
+"""
+if __name__ == "__main__":
+    import urllib.request as request
+    from sys import argv
+    req = request.Request(argv[1])
+    with request.urlopen(req) as r:
+        print(r.headers.get('X-Request-Id'))
